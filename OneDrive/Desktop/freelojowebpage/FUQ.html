@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Modern accordion page with FAQ-style questions and answers."
+		/>
+		<title>FUQ</title>
+		<style>
+			:root {
+				--bg-1: #fff7ed;
+				--bg-2: #eff6ff;
+				--card: #ffffff;
+				--text: #111827;
+				--muted: #374151;
+				--line: #e5e7eb;
+				--accent: #ea580c;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				min-height: 100vh;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				color: var(--text);
+				background:
+					radial-gradient(circle at 10% 10%, #ffedd5 0%, transparent 40%),
+					radial-gradient(circle at 90% 80%, #dbeafe 0%, transparent 35%),
+					linear-gradient(140deg, var(--bg-1), var(--bg-2));
+				padding: clamp(1rem, 3vw, 2.5rem);
+				display: grid;
+				place-items: center;
+			}
+
+			.wrap {
+				width: min(860px, 100%);
+			}
+
+			.heading {
+				margin: 0 0 1rem;
+				font-size: clamp(2rem, 4vw, 2.8rem);
+				letter-spacing: -0.02em;
+				text-wrap: balance;
+			}
+
+			.sub {
+				margin: 0 0 1.4rem;
+				color: var(--muted);
+				font-size: clamp(0.98rem, 2vw, 1.1rem);
+			}
+
+			.accordion {
+				display: grid;
+				gap: 0.75rem;
+			}
+
+			details {
+				background: color-mix(in srgb, var(--card) 93%, #fff 7%);
+				border: 1px solid var(--line);
+				border-radius: 14px;
+				overflow: clip;
+				box-shadow: 0 10px 24px rgba(2, 6, 23, 0.07);
+				transition: transform 180ms ease;
+			}
+
+			details:hover {
+				transform: translateY(-1px);
+			}
+
+			details[open] {
+				border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+			}
+
+			summary {
+				list-style: none;
+				cursor: pointer;
+				padding: 1rem 1.2rem;
+				font-size: clamp(1rem, 2vw, 1.1rem);
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+			}
+
+			summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.icon {
+				inline-size: 1.6rem;
+				block-size: 1.6rem;
+				border: 1px solid var(--line);
+				border-radius: 999px;
+				display: grid;
+				place-items: center;
+				color: var(--accent);
+				flex: none;
+			}
+
+			details[open] .icon {
+				transform: rotate(45deg);
+			}
+
+			.answer {
+				margin: 0;
+				padding: 0 1.2rem 1.1rem;
+				color: var(--muted);
+				line-height: 1.65;
+			}
+		</style>
+	</head>
+	<body>
+		<main class="wrap">
+			<h1 class="heading">Frequently Unclear Questions</h1>
+			<p class="sub">Select any question below to expand the answer.</p>
+
+			<section class="accordion" aria-label="FUQ accordion">
+				<details open>
+					<summary>
+						Can I pay extra for less effort?
+						<span class="icon" aria-hidden="true">+</span>
+					</summary>
+					<p class="answer">
+						Absolutely. Our 'Premium Neglect' tier ensures that your project is handled with the absoult minium amount of focus required to technically exist.
+					</p>
+				</details>
+
+				<details>
+					<summary>
+						Is the 'F' in your quality motto silent?
+						<span class="icon" aria-hidden="true">+</span>
+					</summary>
+					<p class="answer">
+						Only if you're reading it in a library. Otherwise, it is loud, proud, and carries the weight of every corner we've ever cut.
+					</p>
+				</details>
+
+				<details>
+					<summary>
+						What happens if I'm actually satisfide with the sirvice?
+						<span class="icon" aria-hidden="true">+</span>
+					</summary>
+					<p class="answer">
+						we offer a 30-day 'Disappointment Guarantee.' If you accidentally find yourself happy with our work, we'll send a follow-up email that is slightly passive-aggressive to restore the balance.
+					</p>
+				</details>
+
+				<details>
+					<summary>
+						Do you follow industry standerds?
+						<span class="icon" aria-hidden="true">+</span>
+					</summary>
+					<p class="answer">
+						We find that 'standards' are more like 'suggestions'-and we're good at ignoring suggestions.
+					</p>
+				</details>
+
+				<details>
+					<summary>
+						Why is the site's mascot a cat picking a lock?
+						<span class="icon" aria-hidden="true">+</span>
+					</summary>
+					<p class="answer">
+						Because, like our business model, it's technically impressive but legally confusing.
+					</p>
+				</details>
+			</section>
+		</main>
+	</body>
+</html>
