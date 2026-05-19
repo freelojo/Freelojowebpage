@@ -1,261 +1,341 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="Modern accordion page with FAQ-style questions and answers."
-		/>
-		<title>FUQ</title>
-		<style>
-			@font-face {
-				font-family: "Most Wasted";
-				src: url("mostwasted.ttf") format("truetype");
-				font-weight: 400;
-				font-style: normal;
-				font-display: swap;
-			}
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+name="description"
+content="Modern accordion page with FAQ-style questions and answers."
+/>
+<title>FUQ</title>
+<style>
+@font-face {
+font-family: "Most Wasted";
+src: url("mostwasted.ttf") format("truetype");
+font-weight: 400;
+font-style: normal;
+font-display: swap;
+}
 
-			:root {
-				--bg-1: #fff7ed;
-				--bg-2: #eff6ff;
-				--card: #ffffff;
-				--text: #111827;
-				--muted: #374151;
-				--line: #e5e7eb;
-				--accent: #ea580c;
-			}
+:root {
+--card: #ffffff;
+--text: #111827;
+--muted: #374151;
+--line: #e5e7eb;
+--accent: #ea580c;
+}
 
-			* {
-				box-sizing: border-box;
-			}
+* {
+box-sizing: border-box;
+}
 
-			body {
-				margin: 0;
-				min-height: 100vh;
-				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-				color: var(--text);
-				background-image: linear-gradient(
-					to bottom,
-					rgba(246, 247, 251, 0.58),
-					rgba(246, 247, 251, 0.58)
-					),
-					url("1000010202 (2).png");
-				background-size: 80%;
-				background-position: center;
-				background-repeat: no-repeat;
-				padding: clamp(1rem, 3vw, 2.5rem);
-				display: grid;
-				place-items: center;
-			}
+body {
+margin: 0;
+min-height: 100vh;
+font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+color: var(--text);
+background-image: linear-gradient(
+to bottom,
+rgba(246, 247, 251, 0.58),
+rgba(246, 247, 251, 0.58)
+),
+url("cat.png");
+background-size: 80%;
+background-position: center;
+background-repeat: no-repeat;
+padding: clamp(1rem, 3vw, 2.5rem);
+display: grid;
+place-items: center;
+}
 
-			.wrap {
-				width: min(860px, 100%);
-			}
+.top-menu {
+position: fixed;
+top: 1rem;
+left: 1rem;
+z-index: 1000;
+}
 
-			.heading {
-				margin: 0 0 1rem;
-				font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana,
-					sans-serif;
-				font-size: clamp(2rem, 4vw, 2.8rem);
-				color: #ff8a00;
-				text-shadow:
-					0 0 6px rgba(255, 138, 0, 0.95),
-					0 0 14px rgba(255, 138, 0, 0.8),
-					0 0 28px rgba(255, 138, 0, 0.65);
-				letter-spacing: -0.02em;
-				text-wrap: balance;
-			}
+.menu-toggle {
+padding: 0.5rem 0.9rem;
+border: 1px solid rgba(15, 23, 42, 0.28);
+border-radius: 10px;
+background: rgba(255, 255, 255, 0.88);
+color: #111827;
+font-weight: 700;
+cursor: pointer;
+}
 
-			.sub {
-				margin: 0 0 1.4rem;
-				color: var(--muted);
-				font-size: clamp(0.98rem, 2vw, 1.1rem);
-			}
+.menu-list {
+display: none;
+list-style: none;
+margin: 0.5rem 0 0;
+padding: 0.5rem;
+border: 1px solid rgba(15, 23, 42, 0.2);
+border-radius: 12px;
+background: rgba(255, 255, 255, 0.92);
+min-width: 120px;
+}
 
-			.accordion {
-				display: grid;
-				gap: 0.75rem;
-			}
+.top-menu:hover .menu-list,
+.top-menu:focus-within .menu-list {
+display: block;
+}
 
-			details {
-				background: color-mix(in srgb, var(--card) 93%, #fff 7%);
-				border: 1px solid var(--line);
-				border-radius: 14px;
-				overflow: clip;
-				box-shadow: 0 10px 24px rgba(2, 6, 23, 0.07);
-				transition: transform 180ms ease;
-			}
+.menu-link {
+display: block;
+padding: 0.45rem 0.6rem;
+border-radius: 8px;
+text-decoration: none;
+color: #111827;
+font-weight: 700;
+}
 
-			details:hover {
-				transform: translateY(-1px);
-			}
+.menu-link:hover,
+.menu-link:focus-visible {
+background: rgba(255, 138, 0, 0.14);
+}
 
-			details[open] {
-				border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-			}
+.wrap {
+width: min(860px, 100%);
+}
 
-			summary {
-				list-style: none;
-				cursor: pointer;
-				padding: 1rem 1.2rem;
-				font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana,
-					sans-serif;
-				font-size: clamp(1rem, 2vw, 1.1rem);
-				font-weight: 700;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1rem;
-			}
+.heading {
+margin: 0 0 1rem;
+font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+font-size: clamp(2rem, 4vw, 2.8rem);
+color: #ff8a00;
+text-shadow:
+0 0 6px rgba(255, 138, 0, 0.95),
+0 0 14px rgba(255, 138, 0, 0.8),
+0 0 28px rgba(255, 138, 0, 0.65);
+letter-spacing: -0.02em;
+text-wrap: balance;
+}
 
-			summary::-webkit-details-marker {
-				display: none;
-			}
+.sub {
+margin: 0 0 1.4rem;
+color: var(--muted);
+font-size: clamp(0.98rem, 2vw, 1.1rem);
+}
 
-			.icon {
-				inline-size: 1.6rem;
-				block-size: 1.6rem;
-				border: 1px solid var(--line);
-				border-radius: 999px;
-				display: grid;
-				place-items: center;
-				color: var(--accent);
-				flex: none;
-			}
+.accordion {
+display: grid;
+gap: 0.75rem;
+}
 
-			details[open] .icon {
-				transform: rotate(45deg);
-			}
+details {
+background: color-mix(in srgb, var(--card) 93%, #fff 7%);
+border: 1px solid var(--line);
+border-radius: 14px;
+overflow: clip;
+box-shadow: 0 10px 24px rgba(2, 6, 23, 0.07);
+transition: transform 180ms ease;
+}
 
-			.answer {
-				margin: 0;
-				padding: 0 1.2rem 1.1rem;
-				color: var(--muted);
-				line-height: 1.65;
-			}
+details:hover {
+transform: translateY(-1px);
+}
 
-			.construction-banner {
-				position: fixed;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				width: 100vw;
-				padding: 0.55rem 1rem;
-				overflow: hidden;
-				white-space: nowrap;
-				font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-				font-size: clamp(1.25rem, 3vw, 2rem);
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				color: #ff8a00;
-				text-shadow:
-					0 0 6px rgba(255, 138, 0, 0.95),
-					0 0 14px rgba(255, 138, 0, 0.8),
-					0 0 28px rgba(255, 138, 0, 0.65);
-				background: repeating-linear-gradient(
-					135deg,
-					#111111 0 18px,
-					#facc15 18px 36px
-					);
-				border-top: 2px solid #111111;
-				border-bottom: 2px solid #111111;
-				box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-				z-index: 999;
-				pointer-events: none;
-			}
+details[open] {
+border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
 
-			.construction-track {
-				display: flex;
-				width: max-content;
-				white-space: nowrap;
-				animation: construction-scroll 14s linear infinite;
-				will-change: transform;
-			}
+summary {
+list-style: none;
+cursor: pointer;
+padding: 1rem 1.2rem;
+font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+font-size: clamp(1rem, 2vw, 1.1rem);
+font-weight: 700;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1rem;
+}
 
-			.construction-text {
-				display: inline-block;
-				padding-right: 2.2rem;
-			}
+summary::-webkit-details-marker {
+display: none;
+}
 
-			@keyframes construction-scroll {
-				from {
-					transform: translateX(0);
-				}
+.icon {
+inline-size: 1.6rem;
+block-size: 1.6rem;
+border: 1px solid var(--line);
+border-radius: 999px;
+display: grid;
+place-items: center;
+color: var(--accent);
+flex: none;
+}
 
-				to {
-					transform: translateX(-50%);
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<div class="construction-banner" aria-hidden="true">
-			<span class="construction-track">
-				<span class="construction-text">
-					UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION //
-				</span>
-				<span class="construction-text">
-					UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION //
-				</span>
-			</span>
-		</div>
-		<main class="wrap">
-			<h1 class="heading">Frequently Unclear Questions</h1>
-			<p class="sub">Select any question below to expand the answer.</p>
+details[open] .icon {
+transform: rotate(45deg);
+}
 
-			<section class="accordion" aria-label="FUQ accordion">
-				<details open>
-					<summary>
-						Can I pay extra for less effort?
-						<span class="icon" aria-hidden="true">+</span>
-					</summary>
-					<p class="answer">
-						Absolutely. Our 'Premium Neglect' tier ensures that your project is handled with the absoult minium amount of focus required to technically exist.
-					</p>
-				</details>
+.answer {
+margin: 0;
+padding: 0 1.2rem 1.1rem;
+color: var(--muted);
+line-height: 1.65;
+}
 
-				<details>
-					<summary>
-						Is the 'F' in your quality motto silent?
-						<span class="icon" aria-hidden="true">+</span>
-					</summary>
-					<p class="answer">
-						Only if you're reading it in a library. Otherwise, it is loud, proud, and carries the weight of every corner we've ever cut.
-					</p>
-				</details>
+.construction-banner {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100vw;
+padding: 0.55rem 1rem;
+overflow: hidden;
+white-space: nowrap;
+font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+font-size: clamp(1.25rem, 3vw, 2rem);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: #ff8a00;
+text-shadow:
+0 0 6px rgba(255, 138, 0, 0.95),
+0 0 14px rgba(255, 138, 0, 0.8),
+0 0 28px rgba(255, 138, 0, 0.65);
+background: repeating-linear-gradient(
+135deg,
+#111111 0 18px,
+#facc15 18px 36px
+);
+border-top: 2px solid #111111;
+border-bottom: 2px solid #111111;
+box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+z-index: 999;
+pointer-events: none;
+}
 
-				<details>
-					<summary>
-						What happens if I'm actually satisfide with the sirvice?
-						<span class="icon" aria-hidden="true">+</span>
-					</summary>
-					<p class="answer">
-						we offer a 30-day 'Disappointment Guarantee.' If you accidentally find yourself happy with our work, we'll send a follow-up email that is slightly passive-aggressive to restore the balance.
-					</p>
-				</details>
+.construction-track {
+display: flex;
+width: max-content;
+white-space: nowrap;
+animation: construction-scroll 14s linear infinite;
+will-change: transform;
+}
 
-				<details>
-					<summary>
-						Do you follow industry standerds?
-						<span class="icon" aria-hidden="true">+</span>
-					</summary>
-					<p class="answer">
-						We find that 'standards' are more like 'suggestions'-and we're good at ignoring suggestions.
-					</p>
-				</details>
+.construction-text {
+display: inline-block;
+padding-right: 2.2rem;
+}
 
-				<details>
-					<summary>
-						Why is the site's mascot a cat picking a lock?
-						<span class="icon" aria-hidden="true">+</span>
-					</summary>
-					<p class="answer">
-						Because, like our business model, it's technically impressive but legally confusing.
-					</p>
-				</details>
-			</section>
-		</main>
-	</body>
+.back-button {
+position: fixed;
+left: 50%;
+bottom: 1rem;
+transform: translateX(-50%);
+padding: 0.55rem 1.1rem;
+border: 1px solid rgba(15, 23, 42, 0.25);
+border-radius: 999px;
+background: transparent;
+color: #111827;
+font-size: 0.98rem;
+font-weight: 600;
+cursor: pointer;
+z-index: 1000;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+background: transparent;
+border-color: rgba(255, 138, 0, 0.7);
+}
+
+@keyframes construction-scroll {
+from {
+transform: translateX(0);
+}
+
+to {
+transform: translateX(-50%);
+}
+}
+</style>
+</head>
+<body>
+<nav class="top-menu" aria-label="Site navigation">
+<button class="menu-toggle" type="button" aria-haspopup="true">Menu</button>
+<ul class="menu-list">
+<li><a class="menu-link" href="index.html">Home</a></li>
+<li><a class="menu-link" href="about.html">About</a></li>
+<li><a class="menu-link" href="FUQ.html">FUQ</a></li>
+</ul>
+</nav>
+<div class="construction-banner" aria-hidden="true">
+<span class="construction-track">
+<span class="construction-text">
+UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION //
+</span>
+<span class="construction-text">
+UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION //
+</span>
+</span>
+</div>
+<main class="wrap">
+<h1 class="heading">Frequently Unclear Questions</h1>
+<p class="sub">Select any question below to expand the answer.</p>
+
+<section class="accordion" aria-label="FUQ accordion">
+<details open>
+<summary>
+Can I pay extra for less effort?
+<span class="icon" aria-hidden="true">+</span>
+</summary>
+<p class="answer">
+Absolutely. Our 'Premium Neglect' tier ensures that your project is handled with the absoult minium amount of focus required to technically exist.
+</p>
+</details>
+
+<details>
+<summary>
+Is the 'F' in your quality motto silent?
+<span class="icon" aria-hidden="true">+</span>
+</summary>
+<p class="answer">
+Only if you're reading it in a library. Otherwise, it is loud, proud, and carries the weight of every corner we've ever cut.
+</p>
+</details>
+
+<details>
+<summary>
+What happens if I'm actually satisfide with the sirvice?
+<span class="icon" aria-hidden="true">+</span>
+</summary>
+<p class="answer">
+we offer a 30-day 'Disappointment Guarantee.' If you accidentally find yourself happy with our work, we'll send a follow-up email that is slightly passive-aggressive to restore the balance.
+</p>
+</details>
+
+<details>
+<summary>
+Do you follow industry standerds?
+<span class="icon" aria-hidden="true">+</span>
+</summary>
+<p class="answer">
+We find that 'standards' are more like 'suggestions'-and we're good at ignoring suggestions.
+</p>
+</details>
+
+<details>
+<summary>
+Why is the site's mascot a cat picking a lock?
+<span class="icon" aria-hidden="true">+</span>
+</summary>
+<p class="answer">
+Because, like our business model, it's technically impressive but legally confusing.
+</p>
+</details>
+</section>
+</main>
+<button
+type="button"
+class="back-button"
+onclick="if (history.length > 1) { history.back(); } else { location.href='index.html'; }"
+>
+Back
+</button>
+</body>
 </html>
