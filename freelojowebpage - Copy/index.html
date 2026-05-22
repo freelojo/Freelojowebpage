@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+name="description"
+content="Modern homepage template with a bold headline and supporting sub-header."
+/>
+<title>Modern Homepage</title>
+<style>
+@font-face {
+font-family: "Most Wasted";
+src: url("mostwasted.ttf") format("truetype");
+font-weight: 400;
+font-style: normal;
+font-display: swap;
+}
+
+:root {
+--text: #1f2937;
+--muted: #4b5563;
+--accent: #0ea5e9;
+}
+
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+min-height: 100vh;
+font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+color: var(--text);
+background-image: linear-gradient(
+to bottom,
+rgba(246, 247, 251, 0.58),
+rgba(246, 247, 251, 0.58)
+),
+url("cat.png");
+background-size: 80%;
+background-position: center;
+background-repeat: no-repeat;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+padding: 1.5rem 2rem 2rem;
+}
+
+.top-menu {
+position: fixed;
+top: 1rem;
+left: 1rem;
+z-index: 1000;
+}
+
+.menu-toggle {
+padding: 0.5rem 0.9rem;
+border: 1px solid rgba(15, 23, 42, 0.28);
+border-radius: 10px;
+background: rgba(255, 255, 255, 0.88);
+color: #111827;
+font-weight: 700;
+cursor: pointer;
+}
+
+.menu-list {
+display: none;
+list-style: none;
+margin: 0.5rem 0 0;
+padding: 0.5rem;
+border: 1px solid rgba(15, 23, 42, 0.2);
+border-radius: 12px;
+background: rgba(255, 255, 255, 0.92);
+min-width: 120px;
+}
+
+.top-menu:hover .menu-list,
+.top-menu:focus-within .menu-list {
+display: block;
+}
+
+.menu-link {
+display: block;
+padding: 0.45rem 0.6rem;
+border-radius: 8px;
+text-decoration: none;
+color: #111827;
+font-weight: 700;
+}
+
+.menu-link:hover,
+.menu-link:focus-visible {
+background: rgba(14, 165, 233, 0.14);
+}
+
+main {
+width: min(720px, 100%);
+background: transparent;
+border-radius: 16px;
+padding: clamp(1.5rem, 4vw, 3rem);
+text-align: center;
+}
+
+h1 {
+margin: 0 0 1rem;
+font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+font-size: clamp(2.5rem, 6.25vw, 3.75rem);
+line-height: 1.1;
+letter-spacing: -0.03em;
+}
+
+p {
+margin: 0;
+font-size: clamp(1rem, 2.2vw, 1.25rem);
+color: var(--muted);
+}
+
+.accent {
+color: var(--accent);
+}
+
+.construction-banner {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100vw;
+padding: 0.55rem 1rem;
+overflow: hidden;
+white-space: nowrap;
+font-family: "Most Wasted", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+font-size: clamp(1.25rem, 3vw, 2rem);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: #ff8a00;
+text-shadow:
+0 0 6px rgba(255, 138, 0, 0.95),
+0 0 14px rgba(255, 138, 0, 0.8),
+0 0 28px rgba(255, 138, 0, 0.65);
+background: repeating-linear-gradient(
+135deg,
+#111111 0 18px,
+#facc15 18px 36px
+);
+border-top: 2px solid #111111;
+border-bottom: 2px solid #111111;
+box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+z-index: 999;
+pointer-events: none;
+}
+
+.construction-track {
+display: flex;
+width: max-content;
+white-space: nowrap;
+animation: construction-scroll 14s linear infinite;
+will-change: transform;
+}
+
+.construction-text {
+display: inline-block;
+padding-right: 2.2rem;
+}
+
+.back-button {
+position: fixed;
+left: 50%;
+bottom: 1rem;
+transform: translateX(-50%);
+padding: 0.55rem 1.1rem;
+border: 1px solid rgba(15, 23, 42, 0.25);
+border-radius: 999px;
+background: transparent;
+color: #111827;
+font-size: 0.98rem;
+font-weight: 600;
+cursor: pointer;
+z-index: 1000;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+background: transparent;
+border-color: rgba(14, 165, 233, 0.65);
+}
+
+@keyframes construction-scroll {
+from {
+transform: translateX(0);
+}
+
+to {
+transform: translateX(-50%);
+}
+}
+</style>
+</head>
+<body>
+<nav class="top-menu" aria-label="Site navigation">
+<button class="menu-toggle" type="button" aria-haspopup="true">Menu</button>
+<ul class="menu-list">
+<li><a class="menu-link" href="index.html">Home</a></li>
+<li><a class="menu-link" href="about.html">About</a></li>
+<li><a class="menu-link" href="FUQ.html">FUQ</a></li>
+</ul>
+</nav>
+<div class="construction-banner" aria-hidden="true">
+<span class="construction-track">
+<span class="construction-text">
+UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION //
+</span>
+<span class="construction-text">
+UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION // UNDER CONSTRUCTION //
+</span>
+</span>
+</div>
+<main>
+<h1>Welcome to <span class="accent">Freelojo.com</span></h1>
+<p>We put the effort into putting the "F" in quality!</p>
+</main>
+<button
+type="button"
+class="back-button"
+onclick="if (history.length > 1) { history.back(); } else { location.href='index.html'; }"
+>
+Back
+</button>
+</body>
+</html>
